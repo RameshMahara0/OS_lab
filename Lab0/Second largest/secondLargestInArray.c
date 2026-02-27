@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <limits.h>
+
+int main() {
+    int arr[] = {12, 35, 1, 10, 34, 1};
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    if (size < 2) {
+        printf("Array must have at least two elements.\n");
+        return 0;
+    }
+
+    int largest = INT_MIN;
+    int secondLargest = INT_MIN;
+
+    for (int i = 0; i < size; i++) {
+        if (arr[i] > largest) {
+            secondLargest = largest;
+            largest = arr[i];
+        }
+        else if (arr[i] > secondLargest && arr[i] != largest) {
+            secondLargest = arr[i];
+        }
+    }
+
+    if (secondLargest == INT_MIN)
+        printf("No second largest element found.\n");
+    else
+        printf("Second largest element is %d\n", secondLargest);
+
+    return 0;
+}
